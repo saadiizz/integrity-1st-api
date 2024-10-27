@@ -1,0 +1,2419 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Integrity-First - OpenAPI 3.0",
+    "description": "This is a Intergity-First Server based on the OpenAPI 3.0 specification.",
+    "contact": {
+      "email": "taha.muhammad.official@gmail.com"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002"
+    },
+    {
+      "url": "https://staging.integrity1auto.com"
+    },
+    {
+      "url": "https://api.integrity1auto.com"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/auth/send-phonecode": {
+      "post": {
+        "tags": ["Register"],
+        "summary": "Send code to provided phone number for verification",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber", "shopId", "password"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "17283687126783"
+                  },
+                  "shopId": {
+                    "type": "string",
+                    "example": "63cb0a356e797714355c76c6"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/auth/verify-phonecode": {
+      "post": {
+        "tags": ["Register"],
+        "summary": "Verify phone code",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber", "code"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "code": {
+                    "type": "string",
+                    "example": "123456"
+                  },
+                  "tokenData": {
+                    "type": "object",
+                    "properties": {
+                      "deviceId": {
+                        "type": "string",
+                        "example": "12378127731982739818sa89798sd7f98s7d89f"
+                      },
+                      "fcmToken": {
+                        "type": "string",
+                        "example": "12378127731982739818sa89798sd7f98s7d89f12378127731982739818sa89798sd7f98s7d89f"
+                      },
+                      "osName": {
+                        "type": "string",
+                        "example": "IOS | ANDROID"
+                      }
+                    }
+                  },
+                  "deviceType": {
+                    "type": "string",
+                    "example": "IOS | ANDROID"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/users/post-register": {
+      "post": {
+        "tags": ["Register"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API after phone verification to set password and use referral code",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "fullName": {
+                    "type": "string",
+                    "example": "Taha Muhammad"
+                  },
+                  "referralCode": {
+                    "type": "string",
+                    "example": "JHJKASHDKSHA"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "taha.muhammad.official@gmail.com"
+                  },
+                  "deviceType": {
+                    "type": "string",
+                    "example": "IOS | ANDROID"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Login"],
+        "summary": "Login to the app",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber", "password"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "tokenData": {
+                    "type": "object",
+                    "properties": {
+                      "deviceId": {
+                        "type": "string",
+                        "example": "12378127731982739818sa89798sd7f98s7d89f"
+                      },
+                      "fcmToken": {
+                        "type": "string",
+                        "example": "12378127731982739818sa89798sd7f98s7d89f12378127731982739818sa89798sd7f98s7d89f"
+                      },
+                      "osName": {
+                        "type": "string",
+                        "example": "IOS | ANDROID"
+                      }
+                    }
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12sdkljfisd78979cx8v"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Login to the app",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber", "password"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12sdkljfisd78979cx8v"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Create user",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "phoneNumber",
+                  "email",
+                  "password",
+                  "fullName",
+                  "shopId"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "taha@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12sdkljfisd78979cx8v"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "example": "Taha Muhammad"
+                  },
+                  "shopId": {
+                    "type": "string",
+                    "example": "63e0b5a0e22a079f23e9beb0"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Get users list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/get-appointments": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "get Appointments",
+        "description": "",
+        "requestBody": {
+          "description": "The date format is MM-DD-YYYY",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "page": {
+                    "type": "number",
+                    "example": "1"
+                  },
+                  "search": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "limit": {
+                    "type": "number",
+                    "example": "10"
+                  },
+                  "filters": {
+                    "type": "object",
+                    "example": {
+                      "user": "<userid>",
+                      "fromDate": "01-01-2023",
+                      "toDate": "03-13-2023"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/users/{userId}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Update user",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/reward-transaction-history": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a list of reward transactions",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/user-referrals": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a list of user referrals",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/get-users-count": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a count of users",
+        "description": "",
+        "requestBody": {
+          "description": "The date format is MM-DD-YYYY",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "example": {
+                      "fromDate": "01-01-2023",
+                      "toDate": "03-13-2023"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/get-appointments-count": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a count of appointments",
+        "description": "",
+        "requestBody": {
+          "description": "The date format is MM-DD-YYYY",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "example": {
+                      "fromDate": "01-01-2023",
+                      "toDate": "03-13-2023"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/get-repair-orders-count": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a count of repair orders",
+        "description": "",
+        "requestBody": {
+          "description": "The date format is MM-DD-YYYY",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "example": {
+                      "fromDate": "01-01-2023",
+                      "toDate": "03-13-2023"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/get-stats": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to get a count of repair orders",
+        "description": "",
+        "requestBody": {
+          "description": "The date format is MM-DD-YYYY",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "example": {
+                      "fromDate": "01-01-2023",
+                      "toDate": "03-13-2023"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/appointments": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Admin can create appointment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "example": "63a22fea252ee373aa91d3ad"
+                  },
+                  "appointmentAt": {
+                    "type": "string",
+                    "example": "2022-09-20T21:58:00"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "isEarlyBird": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "isAfterHours": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "vehicle": {
+                    "type": "string",
+                    "example": "63a22fea252ee373aa91d3ad"
+                  },
+                  "appointmentReason": {
+                    "type": "string",
+                    "example": "63a430efade356d297d459c0"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/add-reward": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to reward a user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rewardAmount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/remove-reward": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Admin"],
+        "summary": "Call this API to remove reward of a user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rewardAmount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/auth/send-forgot-phonecode": {
+      "post": {
+        "tags": ["Forgot Password"],
+        "summary": "Send code to provided phone number for verification",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/auth/verify-forgot-phonecode": {
+      "post": {
+        "tags": ["Forgot Password"],
+        "summary": "Verify forgot-password phone-code",
+        "description": "In response you will get the token, which you can use to call update profile API with password in body to change passowrd",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["phoneNumber", "code"],
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "code": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/users": {
+      "patch": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API to update user's details",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API to delete 1 or more users",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userIds",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "delete": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API to delete logged-in user profile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/auth/change-password": {
+      "post": {
+        "tags": ["Change Password"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API to change password",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["oldPassword", "newPassword"],
+                "properties": {
+                  "oldPassword": {
+                    "type": "string",
+                    "example": "My old password"
+                  },
+                  "newPassword": {
+                    "type": "string",
+                    "example": "My new password"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/users/me": {
+      "get": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Call this API to get logged-in user details",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/users/{userId}/block": {
+      "post": {
+        "tags": ["Admin"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Call this API to block a user",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Call this API to unblock a user",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/shops": {
+      "get": {
+        "tags": ["Shops"],
+        "summary": "Get the list all shops",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/shops/{shopId}": {
+      "patch": {
+        "tags": ["Shops"],
+        "summary": "Update shop",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/blog": {
+      "get": {
+        "tags": ["Blogs"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "summary": "Get the list all blogs",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Blogs"],
+        "summary": "Create a new blog",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Some Title"
+                  },
+                  "imageURL": {
+                    "type": "string",
+                    "example": "Some URL here"
+                  },
+                  "ctaKind": {
+                    "type": "string",
+                    "example": "Some kind"
+                  },
+                  "ctaValue": {
+                    "type": "string",
+                    "example": "Some CTA value"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Some description"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/blog/{blogId}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Blogs"],
+        "summary": "Update blog",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/blog/{blogIds}": {
+      "delete": {
+        "tags": ["Blogs"],
+        "summary": "Delete multiple blogs",
+        "parameters": [
+          {
+            "name": "blogIds",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "64065fe7f8db2e031d80fcc5,64065ffef8db2e031d80fd60"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/offer": {
+      "get": {
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "tags": ["Offers"],
+        "summary": "Get the list all offers",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Offers"],
+        "summary": "Create a new offer",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Some Title"
+                  },
+                  "imageURL": {
+                    "type": "string",
+                    "example": "Some URL here"
+                  },
+                  "imageURL_mobile": {
+                    "type": "string",
+                    "example": "Some URL here"
+                  },
+                  "ctaKind": {
+                    "type": "string",
+                    "example": "Some kind"
+                  },
+                  "ctaValue": {
+                    "type": "string",
+                    "example": "Some CTA value"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Some description"
+                  },
+                  "discountPercentage": {
+                    "type": "number",
+                    "example": 20
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/offer/{offerId}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Offers"],
+        "summary": "Update offer",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/offer/{offerIds}": {
+      "delete": {
+        "tags": ["Offers"],
+        "summary": "Delete multiple offers",
+        "parameters": [
+          {
+            "name": "offerIds",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "640660c2e7da2e4fb62141f1,640660d8e7da2e4fb6214296"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/dynamic-keys/{dynamicKeyId}": {
+      "delete": {
+        "tags": ["Dynamic Keys"],
+        "summary": "Delete a dynamic key by ID",
+        "parameters": [
+          {
+            "name": "dynamicKeyId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/dynamic-keys": {
+      "get": {
+        "tags": ["Dynamic Keys"],
+        "summary": "Get the list all dynamic keys",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Dynamic Keys"],
+        "summary": "Create a dynamic key",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["key", "value"],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "example": "APP_NAME"
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Integrity First App"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/dynamic-keys/{comma-separated-keys}": {
+      "get": {
+        "tags": ["Dynamic Keys"],
+        "summary": "Get a dynamic key by key-names separated by comma",
+        "parameters": [
+          {
+            "name": "comma-separated-keys",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/dynamic-keys/{key}": {
+      "patch": {
+        "tags": ["Dynamic Keys"],
+        "summary": "Update a dynamic key by its key-name",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["key", "value"],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "Integrity First App"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/vehicle": {
+      "get": {
+        "tags": ["Vehicle"],
+        "summary": "Get all vehicles of current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/vehicle/{vehicleId}/recommendations": {
+      "get": {
+        "tags": ["Vehicle"],
+        "summary": "Get Vehicle's Tekmetric Recommendations",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/vehicle/{vehicleId}/deletion-request": {
+      "post": {
+        "tags": ["Vehicle"],
+        "summary": "Submit vehicle deletion request",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  },
+                  "otherReason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/vehicle/{vehicleId}/maintenance-list": {
+      "get": {
+        "tags": ["Vehicle"],
+        "summary": "Get Vehicle's Maintenance List",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mileage",
+            "description": "(Optional)",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "required": false
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/vehicle/{vehicleId}/service-history": {
+      "get": {
+        "tags": ["Vehicle"],
+        "summary": "Get Vehicle's service-history",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+
+    "/web-hooks/notification": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Save notification in DB",
+        "security": [
+          {
+            "WebhookAPIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": "object"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/web-hooks/redeem": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Redeem points",
+        "security": [
+          {
+            "WebhookAPIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "points": {
+                    "type": "number",
+                    "example": 10
+                  },
+                  "userTekmetricId": {
+                    "type": "number",
+                    "example": 27800881
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/web-hooks/membership": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Redeem points",
+        "security": [
+          {
+            "WebhookAPIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "example": "2023-01-24"
+                  },
+                  "vin": {
+                    "type": "string",
+                    "example": "3GYFNBE34ES560138"
+                  },
+                  "userTekmetricId": {
+                    "type": "number",
+                    "example": 27800881
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/web-hooks/points": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Reward points to user",
+        "security": [
+          {
+            "WebhookAPIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "example": "LOYALTY | REFERRAL"
+                  },
+                  "userTekmetricId": {
+                    "type": "number",
+                    "example": 27800881
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/users/token": {
+      "delete": {
+        "tags": ["Firebase Token"],
+        "summary": "Remove user firebase token",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "12897897987912738ashjdgjhsagdas678d67a8sd"
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/customerio/{eventName}": {
+      "post": {
+        "tags": ["Customer.io"],
+        "summary": "Trigger Customer.io event",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "eventName",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/customerio/{eventName}/anonymous": {
+      "post": {
+        "tags": ["Customer.io"],
+        "summary": "Trigger Customer.io anonymous event",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "eventName",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/appointment-reason": {
+      "get": {
+        "tags": ["Appointment"],
+        "summary": "Get all appointment reasons",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/appointment": {
+      "get": {
+        "tags": ["Appointment"],
+        "summary": "Get the list of paginated appointments of current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Appointment"],
+        "summary": "Create appointment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "appointmentAt": {
+                    "type": "string",
+                    "example": "2022-09-20T21:58:00"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "isEarlyBird": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "isAfterHours": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "vehicle": {
+                    "type": "string",
+                    "example": "63a22fea252ee373aa91d3ad"
+                  },
+                  "appointmentReason": {
+                    "type": "string",
+                    "example": "63a430efade356d297d459c0"
+                  },
+                  "pageName": {
+                    "type": "string",
+                    "example": "SERVICE_DUE | PLATNUM_MEMBER | RECENTLY_RECOMMENDED | APPOINTMENT_TAB"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+
+    "/media": {
+      "post": {
+        "tags": ["Media"],
+        "summary": "Upload image",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/appointment/guest": {
+      "post": {
+        "tags": ["Appointment"],
+        "summary": "Create guest appointment",
+        "security": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tekmetricShopId": {
+                    "type": "number",
+                    "example": 793
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "example": "Taha Muhammad"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "taha.muhammad.official@gmail.com"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "+923204858850"
+                  },
+                  "referralCode": {
+                    "type": "string",
+                    "example": "(Optional)"                    
+                  },
+                  "appointmentAt": {
+                    "type": "string",
+                    "example": "2022-09-20T21:58:00"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "isEarlyBird": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "isAfterHours": {
+                    "type": "boolean",
+                    "example": false
+                  },
+
+                  "appointmentReason": {
+                    "type": "string",
+                    "example": "63a430efade356d297d459c0"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/appointment/{appointmentId}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Appointment"],
+        "summary": "Get appointment by ID",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Appointment"],
+        "summary": "Update appointment",
+        "description": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/appointment/{appointmentIds}": {
+      "delete": {
+        "tags": ["Appointment"],
+        "summary": "Delete multiple appointments",
+        "parameters": [
+          {
+            "name": "appointmentIds",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "64065fe7f8db2e031d80fcc5,64065ffef8db2e031d80fd60"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/notifications/read-all": {
+      "post": {
+        "tags": ["Notification"],
+        "summary": "Read all notifications of current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/notifications": {
+      "get": {
+        "tags": ["Notification"],
+        "summary": "Get the list of paginated notifications of current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/reward-transaction-history": {
+      "get": {
+        "tags": ["Reward Transaction History"],
+        "summary": "Get the list of reward transaction history of current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/total-rewards-given": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "get total rewards given with transaction history details.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/admin/total-rewards-redeemed": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "get total rewards redeemed with transaction history details.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "WebhookAPIKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

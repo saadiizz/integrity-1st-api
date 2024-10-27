@@ -1,0 +1,15 @@
+module.exports = {
+  shopController: require("./shop.controller"),
+  authController: require("./auth.controller"),
+  adminController: require("./admin.controller"),
+  tekmetricController: require("./tekmetric.controller"),
+  usersController: require("./users.controller"),
+  dynamicKeysController: require("./dynamic-keys.controller"),
+  offerController: require("./offer.controller"),
+  blogController: require("./blog.controller"),
+  appointmentControlller: require("./appointment.controller"),
+  appointmentReasonControlller: require("./appointment-reason.controller"),
+  vehicleImageController: require("./vehicle-image.controller"),
+  carMDController: require("./car-md.controller"),
+  customerioController: require("./customeio.controller"),
+};

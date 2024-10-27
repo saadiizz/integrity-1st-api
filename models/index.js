@@ -1,0 +1,17 @@
+module.exports = {
+  User: require("./user.model"),
+  PhoneCode: require("./phone-code.model"),
+  Shop: require("./shop.model"),
+  UserToken: require("./user-tokens.model"),
+  Vehicle: require("./vehicle.model"),
+  RepairOrder: require("./repair-orders.model"),
+  DynamicKeys: require("./dynamic-keys.model"),
+  Offer: require("./offer.model"),
+  Blog: require("./blog.model"),
+  Appointment: require("./appointment.model"),
+  MaintenanceList: require("./maintenance-list.model"),
+  AppointmentReason: require("./appointment-reasons.model"),
+  TekmetricRecommendation: require("./tekmetric-recommendation.model"),
+  Notification: require("./notifications.model"),
+  RewardHistory: require("./reward-history.model"),
+};
